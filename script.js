@@ -10,11 +10,11 @@ function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * (maxFLoored - minCeiled + 1) + minCeiled);
 
     if (computerChoice === 0){
-        return 0 
+        return "rock"
     } else if (computerChoice === 1) {
-        return 1
+        return "paper"
     } else if (computerChoice === 2){
-        return 2
+        return "scissors"
     }
 }
 
@@ -38,9 +38,9 @@ function playRound(computerChoice, humanChoice){
         draws++
     }
     else if (
-        (humanChoice === 0 && computerChoice === 2) || // Rock beats Scissors
-        (humanChoice === 1 && computerChoice === 0) || // Paper beats Rock
-        (humanChoice === 2 && computerChoice === 1)    // Scissors beats Paper
+        (humanChoice === 0 && computerChoice === "scissors") || // Rock beats Scissors
+        (humanChoice === 1 && computerChoice === "rock") || // Paper beats Rock
+        (humanChoice === 2 && computerChoice === "paper")    // Scissors beats Paper
     ){
         humanScore++;
         console.log("You win!");
