@@ -79,6 +79,7 @@ buttonRock.addEventListener("click", () =>{
     const computerSelection = getComputerChoice();
     playRound(computerSelection, getHumanSelection);
     scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
+    displayGameWinner();
 });
 
 buttonPaper.addEventListener("click", () =>{
@@ -87,6 +88,7 @@ buttonPaper.addEventListener("click", () =>{
     const computerSelection = getComputerChoice();
     playRound(computerSelection, getHumanSelection);
     scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
+    displayGameWinner();
 });
 
 buttonScissors.addEventListener("click", () =>{
@@ -95,6 +97,7 @@ buttonScissors.addEventListener("click", () =>{
     const computerSelection = getComputerChoice();
     playRound(computerSelection, getHumanSelection);
     scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
+    displayGameWinner();
 });
 
 body.appendChild(buttonRock);
@@ -109,7 +112,20 @@ const scoreDisplay = document.createElement("p");
 
 // Initial Display of Score
 scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
-body.append(scoreDiv);
-scoreDiv.appendChild(scoreDisplay);
-// console.log(`Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`)
 
+body.append(scoreDiv); // appending the div to the body
+scoreDiv.appendChild(scoreDisplay); // appending the score p element to the new div
+
+// Display set winner
+const gameWinner = document.createElement("p");
+function displayGameWinner() {
+    if (humanScore === 5){
+        // "The player wins the set!"
+        gameWinner.textContent = "The player wins the set!"
+    } else if (computerScore === 5){
+        // "The computer wins the set!"
+        gameWinner.textContent = "The computer wins the set!"
+    };
+
+};
+body.appendChild(gameWinner)
