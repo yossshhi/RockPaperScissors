@@ -17,9 +17,10 @@ function getComputerChoice() {
         return "scissors"
     }
 }
+let humanChoice = "";
 
 function getHumanChoice() {
-    let humanChoice = prompt("Rock, Paper, Scissors!");
+    // let humanChoice = prompt("Rock, Paper, Scissors!");
 
     if (humanChoice.toLowerCase() === "rock"){
         return 0
@@ -33,7 +34,12 @@ function getHumanChoice() {
 
 function playRound(computerChoice, humanChoice){
     // 0 - Rock < 1 - Paper < 2 - Scissors
-    if (humanChoice === computerChoice){
+    if (
+        (humanChoice === 0 && computerChoice === "rock") ||
+        (humanChoice === 1 && computerChoice === "paper") ||
+        (humanChoice === 2 && computerChoice === "scissors") 
+    )
+    {
         console.log("It's a draw!")
         draws++
     }
@@ -52,14 +58,58 @@ function playRound(computerChoice, humanChoice){
 
 
 
-rounds = 0;
-while (rounds != 5){
+// rounds = 0;
+// while (rounds != 5){
+//     const computerSelection = getComputerChoice();
+//     const humanSelection = getHumanChoice();
+//     playRound(computerSelection, humanSelection);
+//     rounds++
+// }
+const body = document.querySelector("body");
+
+const scoreDiv = document.createElement("div");
+
+const buttonRock = document.createElement("button");
+const buttonPaper = document.createElement("button");
+const buttonScissors = document.createElement("button");
+
+buttonRock.addEventListener("click", () =>{
+    humanChoice = "Rock";
+    const getHumanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
-    const humanSelection = getHumanChoice();
-    playRound(computerSelection, humanSelection);
-    rounds++
-}
+    playRound(computerSelection, getHumanSelection);
+    scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
+});
 
+buttonPaper.addEventListener("click", () =>{
+    humanChoice = "Paper";
+    const getHumanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(computerSelection, getHumanSelection);
+    scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
+});
 
-console.log(`Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`)
+buttonScissors.addEventListener("click", () =>{
+    humanChoice = "Scissors";
+    const getHumanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(computerSelection, getHumanSelection);
+    scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
+});
+
+body.appendChild(buttonRock);
+buttonRock.textContent= "Rock";
+body.appendChild(buttonPaper);
+buttonPaper.textContent = "Paper";
+body.appendChild(buttonScissors);
+buttonScissors.textContent = "Scissors";
+
+// SCORE UI
+const scoreDisplay = document.createElement("p");
+
+// Initial Display of Score
+scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
+body.append(scoreDiv);
+scoreDiv.appendChild(scoreDisplay);
+// console.log(`Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`)
 
