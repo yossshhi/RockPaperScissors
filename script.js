@@ -118,14 +118,25 @@ scoreDiv.appendChild(scoreDisplay); // appending the score p element to the new 
 
 // Display set winner
 const gameWinner = document.createElement("p");
+
+function gameReset() {
+    humanScore = 0;
+    computerScore = 0;
+    draws = 0;
+    scoreDisplay.textContent = `Final Score: Player: ${humanScore} vs Computer: ${computerScore} | Draws: ${draws}`
+}
+
 function displayGameWinner() {
     if (humanScore === 5){
         // "The player wins the set!"
         gameWinner.textContent = "The player wins the set!"
+        gameReset();
     } else if (computerScore === 5){
         // "The computer wins the set!"
         gameWinner.textContent = "The computer wins the set!"
+        gameReset();
     };
+    
 
 };
 body.appendChild(gameWinner)
